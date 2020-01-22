@@ -46,6 +46,10 @@ function TextInput(props) {
       props.onSend(text)
       setText('')
     }}
+    onKeyPress={e=> {
+      if(e.key==='Enter') props.onSend(text)
+      setText('')
+    }}
     className="button"
     disabled={!text}>
     <img src = "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"

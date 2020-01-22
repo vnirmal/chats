@@ -85,7 +85,8 @@ header {
   border-radius: 15px;
   border: none;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
+  width: fit-content;
 }
 
 .messages {
@@ -97,10 +98,12 @@ header {
   right: 0;
   margin: 10px;
   bottom: 35px;
+  align-items: flex-end;
 }
 
 .message-wrap {
   display: inline-block;
+  width: fit-content;  
 }
 
 .edit-username{
@@ -123,25 +126,36 @@ header {
 .user {
   position: absolute;
   color: #093637;
-  height: 30px;
   font-size: 13px;
   right: 12px;
+  display: flex;
+  align-content: center;
 }
 
 .edit-button {
   background: white;
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 4px 5px;
+  border: none;
   margin-left: 10px;
   color: #093637;
-  font-weight: 700;
-  font-size: 10px;
-
 
 }
 
 .edit-button:hover{
   background: white;
-  border: 2px solid gray;
+  border: none
+}
+
+.ok-button {
+  background: white;
+  border: none;
+  border-radius: 20px;
+  margin-left: 10px;
+  color: #093637;
+
+
+}
+
+.ok-button:hover{
+  background: white;
+  border: none;
 }

@@ -11,7 +11,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background: linear-gradient(white, #093637);
+  background: #486b4f;
 }
 
 .button{
@@ -26,7 +26,7 @@ body{
 
 .button:hover{
   background: white;
-  border: 2px solid gray;
+  border: 2px solid #d19358;
 }
 
 header {
@@ -34,7 +34,7 @@ header {
   top: 0rem;
   left: 0rem;
   width: 100%;
-  color: #093637;
+  color: #d19358;
   font-size: 22px;
   font-weight: 700;
   padding: 10px;
@@ -42,6 +42,13 @@ header {
   display: flex;
   align-items: center;
   height: 60px;
+  justify-content: space-between;
+  border: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
@@ -66,7 +73,7 @@ header {
 
 .text-input {
   bottom: 0;
-  background: #093637;
+  background: #d19358;
   color: white;
   width: 100%;
   height: 30px;
@@ -78,10 +85,8 @@ header {
 }
 
 .message {
-  color: white;
-  background: #093637;
-  height: 30px;
-  font-size: 13px;
+  background: #d19358;
+  height: fit-content;
   border-radius: 15px;
   border: none;
   padding: 10px;
@@ -89,26 +94,49 @@ header {
   width: fit-content;
 }
 
+
+
+.msg-name {
+  font-size: 8px;
+  color:whitesmoke;
+  font-weight: 900;
+  position: relative;
+  left: 10px;
+}
+
+.msg-text {
+  font-size: 13px;
+  color: white;
+}
+
+
+
 .messages {
   height: calc(100vh - 106px);
   display: flex;
   flex-direction: column-reverse;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: absolute;
   right: 0;
-  margin: 10px;
-  bottom: 35px;
-  align-items: flex-end;
+  bottom: 45px;
+  justify-content:flex-start;
+  width: 100%;
+}
+
+.message-wrap[from="me"] {
+  justify-content: flex-end;
 }
 
 .message-wrap {
   display: inline-block;
   width: fit-content;  
+
 }
 
 .edit-username{
   display: flex;
   align-items: center;
+  
 }
 
 .input-name{
@@ -132,7 +160,7 @@ header {
   align-content: center;
 }
 
-.edit-button {
+.name-button {
   background: white;
   border: none;
   margin-left: 10px;
@@ -140,22 +168,7 @@ header {
 
 }
 
-.edit-button:hover{
+.name-button:hover{
   background: white;
   border: none
-}
-
-.ok-button {
-  background: white;
-  border: none;
-  border-radius: 20px;
-  margin-left: 10px;
-  color: #093637;
-
-
-}
-
-.ok-button:hover{
-  background: white;
-  border: none;
 }

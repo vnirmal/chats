@@ -11,7 +11,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background: #486b4f;
+  background: #b9c5bc;
 }
 
 .button{
@@ -68,14 +68,15 @@ header {
   height: 42px;
   background:rgba(255,255,255,.9);
   display: flex;
-  align-items: center;  
+  align-items: center; 
+  justify-content: flex-end;
 }
 
 .text-input {
   bottom: 0;
   background: #d19358;
   color: white;
-  width: 100%;
+  width: calc(100% - 50px);
   height: 30px;
   font-size: 13px;
   border-radius: 15px;
@@ -94,6 +95,9 @@ header {
   width: fit-content;
 }
 
+.message:hover {
+  background: #835428;
+}
 
 
 .msg-name {
@@ -140,7 +144,7 @@ header {
 }
 
 .input-name{
-  background: #093637;
+  background: #d19358;
   color: white;
   width: 80%;
   height: 30px;
@@ -153,7 +157,7 @@ header {
 
 .user {
   position: absolute;
-  color: #093637;
+  color: #d19358;
   font-size: 13px;
   right: 12px;
   display: flex;
@@ -161,14 +165,39 @@ header {
 }
 
 .name-button {
-  background: white;
+  background: transparent;
   border: none;
   margin-left: 10px;
-  color: #093637;
+  color: #d19358;
 
 }
 
 .name-button:hover{
-  background: white;
+  background: transparent;
+  color: #835428;
   border: none
+}
+
+.send-button {
+  background: transparent;
+  border: none;
+  color: #835428;
+}
+
+.send-button:hover {
+  background-color:transparent;
+  color: #d19358;
+  border: none;
+}
+
+.cam-button {
+  background: transparent;
+  border: none;
+  color: #835428;
+}
+
+.cam-button:hover {
+  background:transparent;
+  color: #d19358;
+  border: none;
 }

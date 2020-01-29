@@ -1,8 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
 import NamePicker from './NamePicker'
+import TextInput from './TextInput'
 import {db, useDB} from './db';
 import {BrowserRouter, Route } from "react-router-dom";
+import { MdChatBubbleOutline } from "react-icons/md";
+import Camera from 'react-snap-pic';
+import * as firebase from "firebase/app"
+import "firebase/firestore"
+import "firebase/storage"
 
 function App() {
   useEffect (()=> {
@@ -18,13 +24,24 @@ function Room(props) {
   const {room} = props.match.params
   const [name, setName] = useState('')
   const messages = useDB(room)
+  const [showCamera, setShowCamera] = useState(false)
 
+  async function takePicture(img) {
+    setShowCamera(false)
+    const imgID = Math.random().toString(36).substring(7)
+    var storageRef = firebase.storage().ref()
+    var ref = storageRef.child(imgID + '.jpg')
+    await ref.putString(img, 'data_url')
+    db.send({ img: imgID, name, ts: new Date(), room })
+  }
+  
   return <main>
-
+    
+    {showCamera && <Camera takePicture={takePicture} />}
+    
     <header> 
       <div className="title"> 
-        Chats
-        <img src = "https://i.ya-webdesign.com/images/speaking-clipart-quotation-9.png"
+        <MdChatBubbleOutline
             alt = "logo"
             className="logo" />
       </div>
@@ -32,56 +49,34 @@ function Room(props) {
     </header>
 
     <div className="messages">
-      {messages.map((m,i)=>{
-        return <div key={i} className="message-wrap"
-          from={m.name===name?'me':'you'}>
-          <div className="msg-name">{m.name}</div>
-          <div className="message"> 
-          <div className="msg-text">{m.text}</div>
-          </div>
-        </div>
-      })}
+      {messages.map((m,i)=> <Message key={i} m={m} name={name}/>)}
     </div>
 
     <TextInput onSend={(text)=> {
       db.send({
         text, name, ts: new Date(), room
       })
-    }} />
-    
-  </main>
-}
-
-function TextInput(props) {
-  const [text, setText] = useState('')
-
-  return <div className="text-input-wrap">
-    <input 
-      value={text}
-      placeholder="Message"
-      onChange={e=> setText(e.target.value)}
-      className="text-input"
-      onKeyPress={e=> {
-      if(e.key==='Enter') {
-        if(text) props.onSend(text)
-          setText('')
-        }
-      }}
+    }} 
+      showCamera={()=>setShowCamera(true)}
     />
-    <button onClick={()=> {
-      if(text) props.onSend(text)
-      setText('')
-    }}
-    className="button"
-    disabled={!text}>
-    <img src = "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-        alt = "icon"
-        className="icon" />
-    </button>
-  </div>
-
+       
+  </main>
+  
+  
 }
 
+const bucket = 'https://firebasestorage.googleapis.com/v0/b/chat-438.appspot.com/o/'
+const suffix = '.jpg?alt=media'
 
+function Message({m, name}) {
+  return <div className="message-wrap"
+  from={m.name===name?'me':'you'}>
+  <div className="msg-name">{m.name}</div>
+  <div className="message"> 
+  <div className="msg-text">{m.text}</div>
+  {m.img && <img src={bucket+m.img+suffix} alt="pic"/> }
+  </div>
+  </div>
+}
 
 export default App;

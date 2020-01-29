@@ -42,7 +42,7 @@ function NamePicker(props) {
     {showName && <div>{name}</div>}
 
     <button onClick={save} className="name-button">
-      {showName ? <MdEdit /> : <MdCheckBox />}
+      {showName ? <MdEdit size={20} /> : <MdCheckBox size={20} />}
     </button>
   </div>
 }
